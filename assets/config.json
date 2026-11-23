@@ -1,0 +1,75 @@
+{
+"width" : 192,
+"height" : 176,
+"names": ["chorizo", "potato", "onion", "tomato", "egg"],
+"textures":  [["ONION", "EGG", "CHORIZO", "WT", "CUT", "WT", "BLENDER", "WT", "WT", "WT", "WT", "DELIVERY"]
+            ,["F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"]
+            ,["F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"]
+            ,["F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"]
+            ,["W", "CONNECTION", "W", "CONNECTION", "W", "BIN", "W", "CONNECTION", "W", "DEVOLUTION", "CONNECTION", "W"]
+            ,["F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"]
+            ,["F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"]
+            ,["F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"]
+            ,["TOMATO", "POTATO", "WT", "WT", "WT", "CUT", "WT", "PAN", "WASHER", "PLATES", "WT", "WT"]],
+"sprites": {
+    "F": [0, 80],
+    "WT": [32, 80],
+    "W": [16, 80],
+    "CUT": [48, 80],
+    "CONNECTION": [64, 80],
+    "PLATES": [16, 96],
+    "PAN": [0, 96],
+    "TOMATO": [0, 112],
+    "POTATO": [16, 112],
+    "ONION": [32, 112],
+    "CHORIZO":[48, 112],
+    "EGG": [64, 112],
+    "BLENDER": [32, 96],
+    "BIN": [80, 80],
+    "DEVOLUTION": [64, 96],
+    "WASHER": [80, 96], 
+    "DELIVERY": [48, 96]
+},
+"Chef1_up_act_nowalk": [128 , 0],
+"Chef1_up_act_walk": [144 , 0],
+"Chef1_up_noact_nowalk":[32, 0],
+"Chef1_up_noact_walk": [48 , 0],
+   
+"Chef1_down_act_nowalk": [96 , 0],
+"Chef1_down_act_walk": [112 , 0],
+"Chef1_down_noact_nowalk":[0, 0],
+"Chef1_down_noact_walk": [16 , 0],
+   
+"Chef1_right_act_nowalk": [160 , 0],
+"Chef1_right_act_walk": [176 , 0],
+"Chef1_right_noact_nowalk":[64, 0],
+"Chef1_right_noact_walk": [80 , 0],
+
+"Chef1_left_act_nowalk": [160 , 0],
+"Chef1_left_act_walk": [176 , 0],
+"Chef1_left_noact_nowalk":[64, 0], 
+"Chef1_left_noact_walk": [80 , 0],
+
+
+"Chef2_up_act_nowalk": [128 , 16],
+"Chef2_up_act_walk": [144 , 16],
+"Chef2_up_noact_nowalk":[32, 16],
+"Chef2_up_noact_walk": [48 , 16],
+   
+"Chef2_down_act_nowalk": [96 , 16],
+"Chef2_down_act_walk": [112 , 16],
+"Chef2_down_noact_nowalk":[0, 16],
+"Chef2_down_noact_walk": [16 , 16],
+   
+"Chef2_right_act_nowalk": [160 , 16],
+"Chef2_right_act_walk": [176 , 16],
+"Chef2_right_noact_nowalk":[64, 16],
+"Chef2_right_noact_walk": [80 , 16],
+
+"Chef2_left_act_nowalk": [160 , 16],
+"Chef2_left_act_walk": [176 , 16],
+"Chef2_left_noact_nowalk":[64, 16],
+"Chef2_left_noact_walk": [80 , 16],
+
+"Dimensions": [16, 16]
+}
