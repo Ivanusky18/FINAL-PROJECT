@@ -47,6 +47,8 @@ class Board:
 
         # Creating the kitchen
         self.kitchen = Kitchen(file_name)
+        self.__walkable_textures = data.get("walkable_textures")
+        self.__textures = data.get("textures")
         
         # In this init we also need to initialize pyxel.
         # This instruction is used to initialize pyxel, see API for more parameters
@@ -102,23 +104,22 @@ class Board:
         self.chef2.walking = False
 
         # To move the first chef. If chef can only move in one direction at the same time: elif
-        # 42, 80, 108 y 144 must be changed for variables ---> Don't know how
-        if pyxel.btn(pyxel.KEY_A):
+        if pyxel.btn(pyxel.KEY_A) and not self.collition(self.chef.x - 1, self.chef.y):
             self.chef.move("left", self.width, self.height)
-        elif pyxel.btn(pyxel.KEY_D):
+        elif pyxel.btn(pyxel.KEY_D) and not self.collition(self.chef.x + 1, self.chef.y):
             self.chef.move("right", self.width, self.height)
-        elif pyxel.btn(pyxel.KEY_W) and self.kitchen.is
+        elif pyxel.btn(pyxel.KEY_W) and not self.collition(self.chef.x, self.chef.y - 1):
             self.chef.move("up", self.width, self.height)
-        elif pyxel.btn(pyxel.KEY_S) and 80 >= self.chef.y:
+        elif pyxel.btn(pyxel.KEY_S) and not self.collition(self.chef.x, self.chef.y + 1):
             self.chef.move("down", self.width, self.height)
         # To move the second chef
-        if pyxel.btn(pyxel.KEY_LEFT):
+        if pyxel.btn(pyxel.KEY_LEFT) and not self.collition(self.chef2.x - 1, self.chef2.y):
             self.chef2.move("left", self.width, self.height)
-        elif pyxel.btn(pyxel.KEY_RIGHT):
+        elif pyxel.btn(pyxel.KEY_RIGHT) and not self.collition(self.chef2.x + 1, self.chef2.y):
             self.chef2.move("right", self.width, self.height)
-        elif pyxel.btn(pyxel.KEY_UP) and self.chef2.y >= 108:
+        elif pyxel.btn(pyxel.KEY_UP) and not self.collition(self.chef2.x, self.chef2.y - 1):
             self.chef2.move("up", self.width, self.height)
-        elif pyxel.btn(pyxel.KEY_DOWN) and 144 >= self.chef2.y: 
+        elif pyxel.btn(pyxel.KEY_DOWN) and not self.collition(self.chef2.x, self.chef2.y + 1):
             self.chef2.move("down", self.width, self.height)
 
         if not self.chef.walking:
@@ -185,3 +186,18 @@ class Board:
 
         # We draw the timer
         pyxel.text(self.width - 30, 10, "Time:" + str(self.__timer), 7)
+
+    def collition(self, chef_x: int, chef_y: int) -> bool:
+        """ Returns True if a chef placed at (chef_x, chef_y) would touch a
+        texture that is not walkable """
+        collition = False
+        for row in range(len(self.__textures)): # This loop covers each list inside "textures"
+            for column in range(len(self.__textures[row])): # This loop covers for each list inside "textures", each element
+                text = self.__textures[row][column]
+                x = column * 16 # This takes the x coordinate of the sprite in the layout
+                y = 32 + row * 16 # This takes de y coordinate of the sprite in the layout
+                # The chef (16x16) touches this texture (16x16) if both squares overlap
+                touches = chef_x < x + 16 and x < chef_x + 16 and chef_y < y + 16 and y < chef_y + 16
+                if touches and text not in self.__walkable_textures:
+                    collition = True
+        return collition
