@@ -1,6 +1,7 @@
 {
 "width" : 192,
 "height" : 176,
+"board_height" : 32
 "names": ["chorizo", "potato", "onion", "tomato", "egg"],
 "textures":  [["ONION", "EGG", "CHORIZO", "WT", "CUT", "WT", "BLENDER", "WT", "WT", "WT", "WT", "DELIVERY"]
             ,["F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"]
@@ -30,6 +31,9 @@
     "WASHER": [80, 96], 
     "DELIVERY": [48, 96]
 },
+
+"non_blocking_textures" : "F",
+
 "Chef1_up_act_nowalk": [128 , 0],
 "Chef1_up_act_walk": [144 , 0],
 "Chef1_up_noact_nowalk":[32, 0],

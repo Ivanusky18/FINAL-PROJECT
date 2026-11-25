@@ -107,7 +107,7 @@ class Board:
             self.chef.move("left", self.width, self.height)
         elif pyxel.btn(pyxel.KEY_D):
             self.chef.move("right", self.width, self.height)
-        elif pyxel.btn(pyxel.KEY_W) and self.chef.y >= 42:
+        elif pyxel.btn(pyxel.KEY_W) and self.kitchen.is
             self.chef.move("up", self.width, self.height)
         elif pyxel.btn(pyxel.KEY_S) and 80 >= self.chef.y:
             self.chef.move("down", self.width, self.height)
