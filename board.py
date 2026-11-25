@@ -21,22 +21,22 @@ class Board:
         # Opening the file
         with open(file_name, "r") as file:
             # Now data is a dictionary with all the required configuration
-            data = json.load(file)
+            self.data = json.load(file)
 
         # Setting the attributes
-        self.width = data.get("width")
-        self.height = data.get("height")
+        self.width = self.data.get("board_width")
+        self.height = self.data.get("board_height")
 
         # The board will contain a Chef in the middle of it, so one of
         # the attributes of the board will be a Chef object. Note that what is
         # at the middle of the board is the top left corner of the chef.
-        self.chef = Chef(self.width // 2, 64, "upper", file_name)
-        self.chef2 = Chef(self.width // 2, 112, "lower", file_name)  
+        self.chef = Chef(self.width // 2, 64, "upper", self.data.get("Chefs"), self.data.get("Sprites_Dimensions"))
+        self.chef2 = Chef(self.width // 2, 112, "lower", self.data.get("Chefs"), self.data.get("Sprites_Dimensions"))
 
         # We need to set the bool to write 'Action0 in each chef when the shift is pressed
 
         # Creating the ingredients
-        NAMES = data.get("names")
+        NAMES = self.data.get("names")
         self.ingredients = []
         for ingredient in NAMES:
             ingr = Ingredient(ingredient)
@@ -47,8 +47,8 @@ class Board:
 
         # Creating the kitchen
         self.kitchen = Kitchen(file_name)
-        self.__walkable_textures = data.get("walkable_textures")
-        self.__textures = data.get("textures")
+        self.__walkable_textures = self.data.get("walkable_textures")
+        self.__textures = self.data.get("textures")
         
         # In this init we also need to initialize pyxel.
         # This instruction is used to initialize pyxel, see API for more parameters

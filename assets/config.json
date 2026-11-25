@@ -1,17 +1,17 @@
 {
-"width" : 192,
-"height" : 176,
-"board_height" : 32,
+"board_width" : 192,
+"board_height" : 176,
 "names": ["chorizo", "potato", "onion", "tomato", "egg"],
-"textures":  [["ONION", "EGG", "CHORIZO", "WT", "CUT", "WT", "BLENDER", "WT", "WT", "WT", "WT", "DELIVERY"]
-            ,["F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"]
-            ,["F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"]
-            ,["F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"]
-            ,["W", "CONNECTION", "W", "CONNECTION", "W", "BIN", "W", "CONNECTION", "W", "DEVOLUTION", "CONNECTION", "W"]
-            ,["F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"]
-            ,["F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"]
-            ,["F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"]
-            ,["TOMATO", "POTATO", "WT", "WT", "WT", "CUT", "WT", "PAN", "WASHER", "PLATES", "WT", "WT"]],
+"textures": { "0":["ONION", "EGG", "CHORIZO", "WT", "CUT", "WT", "BLENDER", "WT", "WT", "WT", "WT", "DELIVERY"],
+            "1": ["F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"],
+            "2": ["F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"],
+            "3": ["F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"],
+            "4": ["W", "CONNECTION", "W", "CONNECTION", "W", "BIN", "W", "CONNECTION", "W", "DEVOLUTION", "CONNECTION", "W"],
+            "5": ["F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"],
+            "6": ["F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"],
+            "7": ["F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"],
+            "8": ["TOMATO", "POTATO", "WT", "WT", "WT", "CUT", "WT", "PAN", "WASHER", "PLATES", "WT", "WT"]
+},
 "sprites": {
     "F": [0, 80],
     "WT": [32, 80],
@@ -34,6 +34,7 @@
 
 "walkable_textures" : "F",
 
+"Chefs" : {
 "Chef1_up_act_nowalk": [128 , 0],
 "Chef1_up_act_walk": [144 , 0],
 "Chef1_up_noact_nowalk":[32, 0],
@@ -73,7 +74,13 @@
 "Chef2_left_act_nowalk": [160 , 16],
 "Chef2_left_act_walk": [176 , 16],
 "Chef2_left_noact_nowalk":[64, 16],
-"Chef2_left_noact_walk": [80 , 16],
+"Chef2_left_noact_walk": [80 , 16]
+},
 
-"Dimensions": [16, 16]
+"Sprites_Dimensions": {
+    "Sprite_height": 16, 
+    "Sprite_width" : 16
+},
+
+"Stations":["WT", "CUT", "CONNECTION", "PLATES", "PAN", "CHORIZO", "POTATO", "ONION", "TOMATO", "EGG", "BLENDER", "BIN", "DELIVERY"]
 }

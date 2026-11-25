@@ -1,24 +1,17 @@
-#Comment more
-import json
 class Chef:
     """ It may or not have a dish. It may or not be acting """
-    def __init__(self, x: int, y: int, pos: str, file_name: str):
+    def __init__(self, x: int, y: int, pos: str, configuration: dict, dimensions: dict, ):
         """ Init method of the class
         :param x: the x of the chef
         :param y: the y of the chef
         :param pos: the position (x, y) of the chef
         """
 
-        # Opening the file
-        with open(file_name, "r") as file:
-            # Now data is a dictionary with all the required configuration
-            data = json.load(file)
-
         # Setting the attributes
         self.x = x
         self.y = y
-        self.__configuration = data
-        self.__dimensions = data.get("Dimensions")
+        self.__configuration = configuration
+        self.__dimensions = dimensions
         
         # Initially the chef will have no dish
         self.has_dish = False
