@@ -1,24 +1,17 @@
-#Comment more
-import json
 class Chef:
     """ It may or not have a dish. It may or not be acting """
-    def __init__(self, x: int, y: int, pos: str, file_name: str):
+    def __init__(self, x: int, y: int, pos: str, configuration: dict, dimensions: dict, ):
         """ Init method of the class
         :param x: the x of the chef
         :param y: the y of the chef
         :param pos: the position (x, y) of the chef
         """
 
-        # Opening the file
-        with open(file_name, "r") as file:
-            # Now data is a dictionary with all the required configuration
-            data = json.load(file)
-
         # Setting the attributes
         self.x = x
         self.y = y
-        self.__configuration = data
-        self.__dimensions = data.get("Dimensions")
+        self.__configuration = configuration
+        self.__dimensions = dimensions
         
         # Initially the chef will have no dish
         self.has_dish = False
@@ -66,7 +59,7 @@ class Chef:
         else:
             which_chef = "Chef2"
 
-        width = self.__dimensions[0]
+        width = self.__dimensions["sprite_width"]
         if self.direction == "left":
             width = -width
 
@@ -83,7 +76,7 @@ class Chef:
         chef_key = f"{which_chef}_{self.direction}_{is_acting}_{is_walking}"
         image_position = self.__configuration.get(chef_key)
 
-        result = (0, image_position[0], image_position[1], width, self.__dimensions[1])
+        result = (0, image_position[0], image_position[1], width, self.__dimensions["sprite_height"])
         return result
 
     @property

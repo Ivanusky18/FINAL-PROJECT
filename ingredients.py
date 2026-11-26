@@ -1,4 +1,3 @@
-#Comment more
 class Ingredient:
     def __init__(self, name: str):
         """ Init method of the class

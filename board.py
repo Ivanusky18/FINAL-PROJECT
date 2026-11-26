@@ -1,13 +1,12 @@
-# Comment more
 # Importing the pyxel library
 import pyxel
-# Importing the Chef class to be able to use it in the Board class
+# Importing the Chef class
 from chef import Chef
 # Importing the Ingredient class
 from ingredients import Ingredient
 # Importing the Kitchen class
 from kitchen import Kitchen
-# Importing de json library to be able to read the configuration file
+# Importing the json library to be able to read the configuration file
 import json
 
 class Board:
@@ -16,47 +15,47 @@ class Board:
         """ Method that creates the board.
         :param width: The width of the board
         :param height: The height of the board
+        :param chef:
+        :param chef2:
+        :param ingredients:
+        :param walkable_textures:
+        :param testures:
+        :param timer:
         """
 
-        # Opening the file
+        # Opening the file so that the board can access the whole json file
         with open(file_name, "r") as file:
             # Now data is a dictionary with all the required configuration
-            data = json.load(file)
+            self.data = json.load(file)
 
-        # Setting the attributes
-        self.width = data.get("width")
-        self.height = data.get("height")
+        # Setting the attributes for the board
+        self.width = self.data.get("board_width")
+        self.height = self.data.get("board_height")
 
-        # The board will contain a Chef in the middle of it, so one of
-        # the attributes of the board will be a Chef object. Note that what is
-        # at the middle of the board is the top left corner of the chef.
-        self.chef = Chef(self.width // 2, 64, "upper", file_name)
-        self.chef2 = Chef(self.width // 2, 112, "lower", file_name)  
+        # The board will contain a Chef in the middle of it, so one of the attributes of the board will be a Chef object. 
+        # Note that what is at the middle of the board is the top left corner of the chef.
+        self.chef = Chef(self.width // 2, 64, "upper", self.data.get("Chefs"), self.data.get("sprites_dimensions"))
+        self.chef2 = Chef(self.width // 2, 112, "lower", self.data.get("Chefs"), self.data.get("sprites_dimensions"))
 
-        # We need to set the bool to write 'Action0 in each chef when the shift is pressed
-
-        # Creating the ingredients
-        NAMES = data.get("names")
+        # Creating the attributes for the ingredients
+        NAMES = self.data.get("names")
         self.ingredients = []
         for ingredient in NAMES:
             ingr = Ingredient(ingredient)
             self.ingredients.append(ingr)
+    
+        # Creating the attributes for the kitchen
+        self.kitchen = Kitchen(self.data.get("textures"), self.data.get("textures_sprites"), self.data.get("sprites_dimensions"))
+        self.__walkable_textures = self.data.get("walkable_textures")
 
         # This attribute will count the seconds
         self.__timer = 0
-
-        # Creating the kitchen
-        self.kitchen = Kitchen(file_name)
-        self.__walkable_textures = data.get("walkable_textures")
-        self.__textures = data.get("textures")
         
-        # In this init we also need to initialize pyxel.
-        # This instruction is used to initialize pyxel, see API for more parameters
+        # In this init we also need to initialize pyxel
         pyxel.init(self.width, self.height, title = "Service Rush", display_scale = 4)
         # Loading the pyxres file with the images
         pyxel.load("assets/resources.pyxres")
-        # Running the game, this will call the update and draw methods in every
-        # frame, see API for more
+        # Running the game, this will call the update and draw methods in every frame, see API for more
         pyxel.run(self.update, self.draw)
 
     # Properties
@@ -191,9 +190,10 @@ class Board:
         """ Returns True if a chef placed at (chef_x, chef_y) would touch a
         texture that is not walkable """
         collition = False
-        for row in range(len(self.__textures)): # This loop covers each list inside "textures"
-            for column in range(len(self.__textures[row])): # This loop covers for each list inside "textures", each element
-                text = self.__textures[row][column]
+        for key in self.kitchen.textures: # This loop covers each list inside "textures"
+            row = int(key)
+            for column in range(len(self.kitchen.textures[key])): # This loop covers for each list inside "textures", each element
+                text = self.kitchen.textures[key][column]
                 x = column * 16 # This takes the x coordinate of the sprite in the layout
                 y = 32 + row * 16 # This takes de y coordinate of the sprite in the layout
                 # The chef (16x16) touches this texture (16x16) if both squares overlap

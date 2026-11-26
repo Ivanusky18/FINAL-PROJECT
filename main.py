@@ -1,4 +1,3 @@
-#Comment more
 # We need to import the library to be able to read the config.json
 from pathlib import Path
 from board import Board
